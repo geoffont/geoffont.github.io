@@ -44,7 +44,7 @@ document
 		let inpuText = document.querySelector(".inpuText").value;
 		event.preventDefault();
 
-		alert(inpuText + " " + message);
+		alert("Bonjour" + " " + inpuText + " " + message);
 
 		if (getComputedStyle(systeme_solaire).display != "none") {
 			systeme_solaire.style.display = "none";
