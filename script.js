@@ -39,30 +39,30 @@ const message =
 let systeme_solaire = document.getElementById("systeme_solaire");
 
 document
-	.getElementById("formulaire")
-	.addEventListener("submit", function (event) {
-		let inpuText = document.querySelector(".inpuText").value;
-		event.preventDefault();
+  .getElementById("formulaire")
+  .addEventListener("submit", function (event) {
+    let inpuText = document.querySelector(".inpuText").value;
+    event.preventDefault();
 
-		alert("Bonjour" + " " + inpuText + " " + message);
+    alert("Bonjour" + " " + inpuText + " " + message);
 
-		if (getComputedStyle(systeme_solaire).display != "none") {
-			systeme_solaire.style.display = "none";
-		}
+    if (getComputedStyle(systeme_solaire).display != "none") {
+      systeme_solaire.style.display = "none";
+    }
 
-		if (window.innerWidth < 600) {
-			("systeme_solaire").hide(systeme_solaire);
-		} else {
-			systeme_solaire.style.display = "block";
-		}
-	});
+    if (window.innerWidth < 600) {
+      "systeme_solaire".hide(systeme_solaire);
+    } else {
+      systeme_solaire.style.display = "block";
+    }
+  });
 /*-----------------fonction scroll---------------*/
 window.addEventListener("scroll", function () {
-	const distance = window.scrollY;
-	document.querySelector("#header").style.transform = `translateY(${
-		distance * 0.55
-	}px)`;
-	document.querySelector("body").style.transform = `translateY(${
-		distance * -0.55
-	}px)`;
+  const distance = window.scrollY;
+  document.querySelector("#header").style.transform = `translateY(${
+    distance * 0.55
+  }px)`;
+  document.querySelector("body").style.transform = `translateY(${
+    distance * -0.55
+  }px)`;
 });
