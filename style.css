@@ -48,7 +48,6 @@ h2 {
   background: var(--color-back);
   box-shadow: var(--box-shadow);
   backdrop-filter: var(--blur);
-  -webkit-backdrop-filter: var(--blur);
   border: var(--border);
 }
 .menu {
@@ -164,7 +163,6 @@ h1 {
   background: var(--color-back);
   box-shadow: var(--box-shadow);
   backdrop-filter: var(--blur);
-  -webkit-backdrop-filter: var(--blur);
   border: var(--border);
   justify-content: center;
   padding: 1rem;
@@ -288,7 +286,6 @@ h1 {
   background: var(--color-back);
   box-shadow: var(--box-shadow);
   backdrop-filter: var(--blur);
-  -webkit-backdrop-filter: var(--blur);
   border: var(--border);
   font-size: 1rem;
 }
@@ -300,7 +297,6 @@ h1 {
   background: var(--color-back);
   box-shadow: var(--box-shadow);
   backdrop-filter: var(--blur);
-  -webkit-backdrop-filter: var(--blur);
   border: var(--border);
   font-size: 1rem;
 }
@@ -312,7 +308,6 @@ h1 {
   background: var(--color-back);
   box-shadow: var(--box-shadow);
   backdrop-filter: var(--blur);
-  -webkit-backdrop-filter: var(--blur);
   border: var(--border);
   font-size: 1rem;
 }
