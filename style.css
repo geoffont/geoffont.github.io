@@ -254,8 +254,13 @@ h1 {
   margin-top: 20rem;
 }
 .carene {
+  display: flex;
+  flex-direction: column;
   text-align: center;
-  width: 55rem;
+  align-items: center;
+}
+.carene p{
+  width: 50%;
 }
 .gal-f {
   width: 100%;
@@ -265,8 +270,13 @@ h1 {
   margin-top: 20rem;
 }
 .tarentule {
+  display: flex;
+  flex-direction: column;
   text-align: center;
-  width: 55rem;
+  align-items: center;
+}
+.tarentule p{
+  width: 50%;
 }
 
 /* -----------------------formulaire------------------- */
@@ -1121,6 +1131,48 @@ h1 {
     margin-top: 8rem;
   }
 }
+/*-----------------------------media query 900---------------------------------*/
+@media screen and (max-width: 900px){
+  .galm74{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+    .galm74 img{
+    width: 40rem;
+  }
+  .galm74 p{
+    width: 40rem;
+  }
+
+
+  .tarentule{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+    .tarentule img{
+    width: 40rem;
+  }
+  .tarentule p{
+    width: 40rem;
+  }
+  .carene{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+    .carene img{
+    width: 40rem;
+  }
+  .carene p{
+    width: 40rem;
+  }
+}
+
 
 /*------------------------------media query 600----------------------------------*/
 
@@ -1150,63 +1202,70 @@ h1 {
     width: 20rem;
   }
   .gal-a {
-    margin-top: 2rem;
+    margin-top: 5rem;
   }
   .orion {
     width: auto;
     height: auto;
   }
+
   .chariot {
+    width: 20rem;
     padding-top: 2rem;
   }
   p {
-    padding: 1.5rem;
+    width: 20rem;
   }
   .gal-b {
-    margin-top: 17rem;
+    margin-top: 15rem;
   }
   .galm74 {
     width: 20rem;
-    margin-top: 17rem;
+    margin-top: 27rem;
   }
-  .gal-c {
-    margin-top: 42rem;
+  .galm74 p{
     width: 20rem;
   }
-  .austral p {
-    padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+  .gal-c {
+    margin-top: 45rem;
+    width: 20rem;
   }
+  .austral{
+    width: 20rem;
+  }
+  
   .jup {
+    width: 20rem;
     padding-top: 3rem;
   }
-  .jup p {
-    padding: 0.5rem 1.5rem 0.5rem 1.5rem;
-  }
+  
   .gal-d {
+    margin-top: 32rem;
+    width: 20rem;
+  }
+  .globule{
+    width: 20rem;
+  }
+  .quinte {
+    width: 20rem;
+    padding-top: 3rem;
+  }
+ 
+  .gal-e {
+    margin-top: 25rem;
+    width: 20rem;
+  }
+  .carene p{
+    width: 20rem;
+  }
+  .gal-f {
     margin-top: 35rem;
     width: 20rem;
   }
-  .globule p {
-    padding: 0.5rem 1.5rem 0.5rem 1.5rem;
-  }
-  .quinte {
-    padding-top: 3rem;
-  }
-  .quinte p {
-    padding: 0.5rem 1.5rem 0.5rem 1.5rem;
-  }
-  .gal-e {
-    margin-top: 30rem;
-    width: 20rem;
-  }
-  .carene {
-    width: 100%;
-  }
-  .gal-f {
-    margin-top: 40rem;
-    width: 20rem;
-  }
   .tarentule {
+    width: 20rem;
+  }
+  .tarentule p {
     width: 20rem;
   }
   #formulaire {
@@ -1221,4 +1280,8 @@ h1 {
   #script_solaire {
     display: none;
   }
+  .liens img{
+    padding: 0;
+  }
 }
+
