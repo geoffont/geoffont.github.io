@@ -1020,6 +1020,13 @@ h1 {
   margin-left: 345px;
   transition: 0.5s;
 }
+/*------------------formulaire-----------------*/
+form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 /* ------------------footer--------------------*/
 
