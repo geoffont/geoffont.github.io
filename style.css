@@ -259,7 +259,7 @@ h1 {
   text-align: center;
   align-items: center;
 }
-.carene p{
+.carene p {
   width: 50%;
 }
 .gal-f {
@@ -275,7 +275,7 @@ h1 {
   text-align: center;
   align-items: center;
 }
-.tarentule p{
+.tarentule p {
   width: 50%;
 }
 
@@ -1132,47 +1132,46 @@ h1 {
   }
 }
 /*-----------------------------media query 900---------------------------------*/
-@media screen and (max-width: 900px){
-  .galm74{
+
+@media screen and (max-width: 900px) {
+  .galm74 {
     display: flex;
     flex-direction: column;
     text-align: center;
     align-items: center;
   }
-    .galm74 img{
+  .galm74 img {
     width: 40rem;
   }
-  .galm74 p{
+  .galm74 p {
     width: 40rem;
   }
 
-
-  .tarentule{
+  .tarentule {
     display: flex;
     flex-direction: column;
     text-align: center;
     align-items: center;
   }
-    .tarentule img{
+  .tarentule img {
     width: 40rem;
   }
-  .tarentule p{
+  .tarentule p {
     width: 40rem;
   }
-  .carene{
+  .carene {
     display: flex;
     flex-direction: column;
     text-align: center;
     align-items: center;
   }
-    .carene img{
+  .carene img {
     width: 40rem;
   }
-  .carene p{
+  .carene p {
     width: 40rem;
   }
 }
-
 
 /*------------------------------media query 600----------------------------------*/
 
@@ -1223,39 +1222,39 @@ h1 {
     width: 20rem;
     margin-top: 27rem;
   }
-  .galm74 p{
+  .galm74 p {
     width: 20rem;
   }
   .gal-c {
     margin-top: 45rem;
     width: 20rem;
   }
-  .austral{
+  .austral {
     width: 20rem;
   }
-  
+
   .jup {
     width: 20rem;
     padding-top: 3rem;
   }
-  
+
   .gal-d {
     margin-top: 32rem;
     width: 20rem;
   }
-  .globule{
+  .globule {
     width: 20rem;
   }
   .quinte {
     width: 20rem;
     padding-top: 3rem;
   }
- 
+
   .gal-e {
     margin-top: 25rem;
     width: 20rem;
   }
-  .carene p{
+  .carene p {
     width: 20rem;
   }
   .gal-f {
@@ -1280,8 +1279,7 @@ h1 {
   #script_solaire {
     display: none;
   }
-  .liens img{
+  .liens img {
     padding: 0;
   }
 }
-
