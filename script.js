@@ -33,29 +33,38 @@ precedent.addEventListener("click", function () {
   img__slider[etape].classList.add("active");
 });
 /*------------------fonction formulaire------*/
-const message =
-  ", merci pour votre retour! voici un petit cadeaux pour le mode display ;)";
 
 let systeme_solaire = document.getElementById("systeme_solaire");
+
+let popup = document.querySelector(".popup")
+function openPopup() {
+  popup.classList.add("openpopup")
+}
+function closePopup() {
+  popup.classList.add("closepopup")
+}
 
 document
   .getElementById("formulaire")
   .addEventListener("submit", function (event) {
     let inpuText = document.querySelector(".inpuText").value;
+    
     event.preventDefault();
 
-    alert("Bonjour" + " " + inpuText + " " + message);
+    let inputSubmit = document.querySelector(".inputSubmit");
+    inputSubmit.innerHTML = inpuText;
+
 
     if (getComputedStyle(systeme_solaire).display != "none") {
       systeme_solaire.style.display = "none";
     }
-
     if (window.innerWidth < 600) {
       "systeme_solaire".hide(systeme_solaire);
     } else {
       systeme_solaire.style.display = "block";
     }
   });
+
 /*-----------------fonction scroll---------------*/
 window.addEventListener("scroll", function () {
   const distance = window.scrollY;

@@ -325,6 +325,38 @@ h1 {
   cursor: pointer;
   scale: 1.1;
 }
+.popup{
+  margin-top: 2rem;
+  text-align: center;
+  width: 40rem;
+  height: 8rem;
+  border-radius: 5px;
+  background: var(--color-back);
+  box-shadow: var(--box-shadow);
+  backdrop-filter: var(--blur);
+  border: var(--border);
+  font-size: 1rem;
+  visibility: hidden;
+}
+.openpopup{
+  visibility: visible;
+}
+.closepopup{
+  visibility: hidden;
+}
+.popup button{
+  margin-top: 1rem;
+  width: 50%;
+  border-radius: 5px;
+  background: var(--color-back);
+  box-shadow: var(--box-shadow);
+  backdrop-filter: var(--blur);
+  border: var(--border);
+  font-size: 1rem;
+}
+.popup button:hover{
+  cursor: pointer;
+}
 
 /*-------------------syteme solaire---------------*/
 #systeme_solaire {
@@ -1281,5 +1313,8 @@ h1 {
   }
   .liens img {
     padding: 0;
+  }
+  .popup{
+    width: 20rem;
   }
 }
