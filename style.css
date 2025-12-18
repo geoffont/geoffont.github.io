@@ -5,6 +5,13 @@
   font-family: "Kanit", sans-serif;
   color: white;
 }
+html {
+  overflow-x: hidden;
+  height: 100%;
+}
+body {
+  position: relative;
+}
 :root {
   --color-back: rgba(37, 15, 204, 0.1);
   --box-shadow: 0 8px 32px 0 gba(31, 38, 135, 0.37);
@@ -17,6 +24,14 @@ img {
   box-shadow: var(--box-shadow);
   border: var(--border);
   border-radius: 5px;
+  max-width: 100%;
+  height: auto;
+}
+#galerie img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 
 /*---------------------------- fond d'écran -------------------------------*/
@@ -24,10 +39,20 @@ img {
 body {
   background: url(images/espace.jpg);
   background-position: 100%;
-  height: 4050px;
+  background-attachment: fixed;
+  background-size: cover;
+  min-height: 100vh;
+  overflow-x: hidden;
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 h2 {
   margin-bottom: 1rem;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+}
+p {
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  line-height: 1.6;
 }
 
 /* ---------------------------------bar de nav------------------------------- */
@@ -97,9 +122,10 @@ a {
 .titre {
   text-align: center;
   margin-top: 3rem;
+  padding: 0 1rem;
 }
 h1 {
-  font-size: 2.5rem;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
   letter-spacing: 2px;
 }
 
@@ -192,91 +218,115 @@ h1 {
 
 .gal-a {
   width: 100%;
-  height: 31.25rem;
+  min-height: 31.25rem;
   display: flex;
   justify-content: space-around;
   margin-top: 5rem;
+  padding: 0 1rem;
+  gap: 2rem;
 }
 .orion {
   text-align: center;
-  width: 33rem;
+  width: 100%;
+  max-width: 33rem;
 }
 .chariot {
   text-align: center;
-  width: 33rem;
+  width: 100%;
+  max-width: 33rem;
 }
 .gal-b {
   width: 100%;
-  height: 31.25rem;
+  min-height: 31.25rem;
   display: flex;
   justify-content: center;
   margin-top: 20rem;
+  padding: 0 1rem;
 }
 .galm74 {
   text-align: center;
-  width: 47rem;
+  width: 100%;
+  max-width: 47rem;
 }
 .gal-c {
   width: 100%;
-  height: 31.25rem;
+  min-height: 31.25rem;
   display: flex;
   justify-content: space-around;
   margin-top: 20rem;
+  padding: 0 1rem;
+  gap: 2rem;
 }
 .austral {
   text-align: center;
-  width: 33rem;
+  width: 100%;
+  max-width: 33rem;
 }
 .jup {
   text-align: center;
-  width: 33rem;
+  width: 100%;
+  max-width: 33rem;
 }
 .gal-d {
   width: 100%;
-  height: 31.25rem;
+  min-height: 31.25rem;
   display: flex;
   justify-content: space-around;
   margin-top: 20rem;
+  padding: 0 1rem;
+  gap: 2rem;
 }
 .globule {
   text-align: center;
-  width: 33rem;
+  width: 100%;
+  max-width: 33rem;
 }
 .quinte {
   text-align: center;
-  width: 33rem;
+  width: 100%;
+  max-width: 33rem;
 }
 .gal-e {
   width: 100%;
-  height: 31.25rem;
+  min-height: 31.25rem;
   display: flex;
   justify-content: center;
   margin-top: 20rem;
+  padding: 0 1rem;
 }
 .carene {
   display: flex;
   flex-direction: column;
   text-align: center;
   align-items: center;
+  width: 100%;
+  max-width: 47rem;
 }
 .carene p {
-  width: 50%;
+  width: 100%;
+  max-width: 50%;
+  padding: 0 1rem;
 }
 .gal-f {
   width: 100%;
-  height: 31.25rem;
+  min-height: 31.25rem;
   display: flex;
   justify-content: center;
   margin-top: 20rem;
+  padding: 0 1rem;
 }
 .tarentule {
   display: flex;
   flex-direction: column;
   text-align: center;
   align-items: center;
+  width: 100%;
+  max-width: 47rem;
 }
 .tarentule p {
-  width: 50%;
+  width: 100%;
+  max-width: 50%;
+  padding: 0 1rem;
 }
 
 /* -----------------------formulaire------------------- */
@@ -359,12 +409,21 @@ h1 {
 }
 
 /*-------------------systeme solaire---------------*/
+#script_solaire {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 5rem;
+  margin-bottom: 0;
+  overflow: hidden;
+  min-height: 0;
+}
 #systeme_solaire {
-  margin: auto;
   width: 50rem;
   height: 37rem;
-  margin-top: 5rem;
   display: none;
+  position: relative;
 }
 .orbite {
   position: absolute;
@@ -1030,6 +1089,10 @@ form{
 
 /* ------------------footer--------------------*/
 
+#bas {
+  margin-bottom: 0;
+  padding-bottom: 1rem;
+}
 .footer {
   display: flex;
   justify-content: center;
@@ -1064,18 +1127,31 @@ form{
 #bas p {
   font-size: x-small;
   padding-left: 1rem;
+  margin-bottom: 0;
+}
+
+/*---------------------------media query 1200------------------------------------*/
+
+@media screen and (max-width: 1200px) {
+  .gal-a, .gal-c, .gal-d {
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+  }
+  .orion, .chariot, .austral, .jup, .globule, .quinte {
+    width: 90%;
+    max-width: 40rem;
+  }
 }
 
 /*---------------------------media query 1100------------------------------------*/
 
 @media screen and (max-width: 1100px) {
-  body {
-    height: 6000px;
-  }
   #middle {
     display: flex;
     flex-direction: column-reverse;
     justify-content: center;
+    gap: 2rem;
   }
   .article-static {
     width: 100%;
@@ -1083,14 +1159,15 @@ form{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0rem;
+    padding: 1rem;
     margin-top: 3rem;
   }
   .article-static p {
     padding: 0.5rem;
   }
   .telescope {
-    width: 35rem;
+    width: 100%;
+    max-width: 35rem;
     padding: 0;
   }
   .slider {
@@ -1102,113 +1179,125 @@ form{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top: 25rem;
+    padding-top: 5rem;
   }
   .gal-a {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10rem;
-    width: 100%;
+    margin-top: 5rem;
+    width: 90%;
   }
-  .chariot {
-    padding-top: 2rem;
+  .orion, .chariot {
+    width: 100%;
+    margin-bottom: 3rem;
   }
   .gal-b {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 31rem;
-    padding: 0;
-    width: 100%;
+    margin-top: 10rem;
+    padding: 0 1rem;
+    width: 90%;
   }
   .galm74 {
-    margin-top: 16rem;
-  }
-  .gal-c {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 48rem;
+    margin-top: 5rem;
     width: 100%;
   }
-  .jup {
-    padding-top: 3rem;
+  .gal-c {
+    margin-top: 10rem;
+    width: 90%;
   }
-
+  .austral, .jup {
+    width: 100%;
+    margin-bottom: 3rem;
+  }
   .gal-f {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 42rem;
+    margin-top: 10rem;
+    width: 90%;
+  }
+  .tarentule {
     width: 100%;
   }
   .gal-d {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 39rem;
-    width: 100%;
+    margin-top: 10rem;
+    width: 90%;
   }
-  .quinte {
-    padding-top: 3rem;
+  .globule, .quinte {
+    width: 100%;
+    margin-bottom: 3rem;
   }
   .gal-e {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 37rem;
+    margin-top: 10rem;
+    width: 90%;
+  }
+  .carene {
     width: 100%;
+  }
+  .carene p, .tarentule p {
+    max-width: 100%;
   }
   #formulaire {
     margin-top: 8rem;
   }
+  #script_solaire {
+    margin-top: 3rem;
+  }
+  #systeme_solaire {
+    transform: scale(0.7);
+    transform-origin: center center;
+  }
 }
+/*-----------------------------media query 768 (tablettes)---------------------------------*/
+
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: clamp(1.4rem, 4vw, 2rem);
+  }
+
+  .article-static {
+    padding: 1rem;
+  }
+
+  .slider {
+    height: 50vh;
+  }
+
+  .galm74, .tarentule, .carene {
+    width: 100%;
+    max-width: 30rem;
+  }
+
+  .orion, .chariot, .austral, .jup, .globule, .quinte {
+    width: 100%;
+    max-width: 28rem;
+  }
+
+  .inpuText, .aeraText {
+    width: 90%;
+    max-width: 30rem;
+  }
+}
+
 /*-----------------------------media query 900---------------------------------*/
 
 @media screen and (max-width: 900px) {
-  .galm74 {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
+  h1 {
+    font-size: clamp(1.3rem, 3.5vw, 2rem);
   }
-  .galm74 img {
-    width: 40rem;
+  .galm74, .tarentule, .carene {
+    width: 100%;
+    padding: 0 1rem;
   }
-  .galm74 p {
-    width: 40rem;
+  .galm74 img, .tarentule img, .carene img {
+    width: 100%;
+    max-width: 35rem;
   }
-
-  .tarentule {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
+  .galm74 p, .tarentule p, .carene p {
+    width: 100%;
+    max-width: 35rem;
   }
-  .tarentule img {
-    width: 40rem;
+  .orion, .chariot, .austral, .jup, .globule, .quinte {
+    width: 100%;
+    max-width: 35rem;
   }
-  .tarentule p {
-    width: 40rem;
-  }
-  .carene {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-  }
-  .carene img {
-    width: 40rem;
-  }
-  .carene p {
-    width: 40rem;
+  #systeme_solaire {
+    transform: scale(0.55);
+    transform-origin: center center;
   }
 }
 
@@ -1219,109 +1308,156 @@ form{
     margin: 0;
     padding: 0;
   }
-  body {
-    height: 5500px;
+
+  h1 {
+    font-size: clamp(1.2rem, 5vw, 1.8rem);
+    padding: 0 0.5rem;
+  }
+
+  h2 {
+    font-size: clamp(1rem, 4vw, 1.3rem);
+  }
+
+  p {
+    font-size: clamp(0.85rem, 3vw, 1rem);
+    width: 100%;
+    max-width: 100%;
+    padding: 0 0.5rem;
+  }
+
+  .article-static {
+    padding: 0.5rem;
   }
 
   .article-static p {
     padding: 0.5rem;
   }
+
   .telescope {
     width: 100%;
-    height: 20rem;
+    max-width: 100%;
+    height: auto;
     padding: 0;
   }
+
   .slider {
     width: 100%;
-    margin-top: 3rem;
+    height: 60vh;
+    margin-top: 2rem;
+  }
+
+  #galerie {
+    padding-top: 2rem;
   }
 
   #galerie img {
-    width: 20rem;
+    width: 100%;
+    max-width: 100%;
   }
-  .gal-a {
+
+  .gal-a, .gal-b, .gal-c, .gal-d, .gal-e, .gal-f {
+    width: 95%;
     margin-top: 5rem;
-  }
-  .orion {
-    width: auto;
-    height: auto;
+    padding: 0 0.5rem;
   }
 
-  .chariot {
-    width: 20rem;
-    padding-top: 2rem;
-  }
-  p {
-    width: 20rem;
-  }
-  .gal-b {
-    margin-top: 15rem;
-  }
-  .galm74 {
-    width: 20rem;
-    margin-top: 27rem;
-  }
-  .galm74 p {
-    width: 20rem;
-  }
-  .gal-c {
-    margin-top: 45rem;
-    width: 20rem;
-  }
-  .austral {
-    width: 20rem;
+  .orion, .chariot, .austral, .jup, .globule, .quinte, .galm74, .tarentule, .carene {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 2rem;
   }
 
-  .jup {
-    width: 20rem;
-    padding-top: 3rem;
+  .galm74 p, .tarentule p, .carene p {
+    width: 100%;
+    max-width: 100%;
   }
 
-  .gal-d {
-    margin-top: 32rem;
-    width: 20rem;
-  }
-  .globule {
-    width: 20rem;
-  }
-  .quinte {
-    width: 20rem;
-    padding-top: 3rem;
-  }
-
-  .gal-e {
-    margin-top: 25rem;
-    width: 20rem;
-  }
-  .carene p {
-    width: 20rem;
-  }
-  .gal-f {
-    margin-top: 35rem;
-    width: 20rem;
-  }
-  .tarentule {
-    width: 20rem;
-  }
-  .tarentule p {
-    width: 20rem;
-  }
   #formulaire {
-    margin-top: 2rem;
+    margin-top: 5rem;
+    padding: 0 1rem;
   }
-  .inpuText {
-    width: 20rem;
+
+  .inpuText, .aeraText {
+    width: 100%;
+    max-width: 90%;
   }
-  .aeraText {
-    width: 20rem;
+
+  .formButton {
+    width: 90%;
+    max-width: 12rem;
   }
+
   #script_solaire {
-    display: none;
+    margin-top: 2rem;
+    overflow-x: hidden;
   }
+
+  #systeme_solaire {
+    transform: scale(0.38);
+    transform-origin: center center;
+  }
+
+  .liens {
+    display: flex;
+    gap: 0.5rem;
+  }
+
   .liens img {
-    padding: 0;
+    padding: 0.5rem;
+    height: 2rem;
   }
-  .popup{
-    width: 20rem;
+
+  .popup {
+    width: 90%;
+    max-width: 25rem;
+  }
+
+  .nav {
+    padding: 0.5rem;
+  }
+}
+
+/*---------------------------media query 400 (très petits mobiles)---------------------------*/
+
+@media screen and (max-width: 400px) {
+  h1 {
+    font-size: clamp(1rem, 5vw, 1.5rem);
+    padding: 0 0.5rem;
+  }
+
+  h2 {
+    font-size: clamp(0.9rem, 4vw, 1.2rem);
+  }
+
+  p {
+    font-size: clamp(0.8rem, 3.5vw, 0.95rem);
+  }
+
+  .slider {
+    height: 40vh;
+  }
+
+  .inpuText, .aeraText {
+    width: 100%;
+    font-size: 0.9rem;
+  }
+
+  .formButton {
+    width: 100%;
+    font-size: 0.9rem;
+  }
+
+  .popup {
+    width: 95%;
+    font-size: 0.9rem;
+  }
+
+  .liens img {
+    height: 1.8rem;
+    padding: 0.3rem;
+  }
+
+  #systeme_solaire {
+    transform: scale(0.3);
   }
 }

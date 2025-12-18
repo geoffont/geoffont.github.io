@@ -47,34 +47,29 @@ function closePopup() {
 document
   .getElementById("formulaire")
   .addEventListener("submit", function (event) {
-    
+
     let inpuText = document.querySelector(".inpuText").value;
-   
+
     event.preventDefault();
-    
+
     let inputSubmit = document.querySelector(".inputSubmit");
-    
+
     inputSubmit.innerHTML = inpuText;
-    
+
 
     if (getComputedStyle(systeme_solaire).display != "none") {
       systeme_solaire.style.display = "none";
-    }
-    if (window.innerWidth < 600) {
-      "systeme_solaire".hide(systeme_solaire);
     } else {
       systeme_solaire.style.display = "block";
     }
-   
+
   });
   
 /*-----------------fonction scroll---------------*/
-window.addEventListener("scroll", function () {
-  const distance = window.scrollY;
-  document.querySelector("#header").style.transform = `translateY(${
-    distance * 0.55
-  }px)`;
-  document.querySelector("body").style.transform = `translateY(${
-    distance * -0.55
-  }px)`;
-});
+// Effet de parallaxe désactivé pour éviter l'espace vide après le footer
+// window.addEventListener("scroll", function () {
+//   const distance = window.scrollY;
+//   document.querySelector("#header").style.transform = `translateY(${
+//     distance * 0.55
+//   }px)`;
+// });
