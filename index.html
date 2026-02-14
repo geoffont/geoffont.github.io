@@ -1,395 +1,909 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="images/logo-satellite.png">
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer">
-    <title>Telescope James Webb</title>
-  </head>
-  <body>
-                                             <!--header-->
-    <div id="header">
-      <div class="nav">
-        <div class="menu">
-          <ul class="deroulant">
-            <li class="base-menu">
-              <a href="#"></a
-              ><img
-                src="images/icon_etoile.png"
-                alt="etoile polaire"
-                class="logo">
-            </li>
-          </ul>
-          <ul class="sous-menu">
-            <li><a href="#top">Accueil</a></li>
-            <li><a href="#galerie">Galerie</a></li>
-            <li><a href="#formulaire">Formulaire</a></li>
-          </ul>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geoffroy — Développeur Fullstack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0c0c0e;
+    --bg-elevated: #141418;
+    --bg-card: #1a1a20;
+    --border: #2a2a32;
+    --text: #e8e6e1;
+    --text-muted: #8a8a94;
+    --text-dim: #5c5c66;
+    --accent: #c8a456;
+    --accent-soft: rgba(200, 164, 86, 0.12);
+    --accent-glow: rgba(200, 164, 86, 0.06);
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'Outfit', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--bg);
+  }
+
+  /* --- NAV --- */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 1.25rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(12, 12, 14, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(42, 42, 50, 0.4);
+    transition: all 0.3s ease;
+  }
+
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+
+  .nav-logo span { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a:hover::after { width: 100%; }
+
+  /* --- HERO --- */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 7vw, 6.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: var(--text);
+    max-width: 900px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.4s forwards;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    margin-top: 2rem;
+    max-width: 560px;
+    font-weight: 300;
+    line-height: 1.7;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.6s forwards;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 3rem;
+    margin-top: 3.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.8s forwards;
+  }
+
+  .hero-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .hero-meta-value {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    color: var(--text);
+  }
+
+  .hero-meta-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    margin-top: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 1s forwards;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--bg);
+  }
+
+  .btn-primary:hover {
+    background: #d4b068;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 30px rgba(200, 164, 86, 0.2);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+  }
+
+  .btn-outline:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  /* --- SECTIONS --- */
+  section {
+    padding: 7rem 3rem;
+  }
+
+  .section-label {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-desc {
+    color: var(--text-muted);
+    max-width: 540px;
+    font-weight: 300;
+    line-height: 1.7;
+    margin-bottom: 3.5rem;
+  }
+
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: var(--accent);
+    margin-bottom: 3rem;
+  }
+
+  /* --- ABOUT --- */
+  #about {
+    background: var(--bg-elevated);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    max-width: 1100px;
+  }
+
+  .about-text p {
+    color: var(--text-muted);
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
+
+  .about-text strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  /* --- SKILLS --- */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: 2.5rem;
+  }
+
+  .skill-cell {
+    background: var(--bg-elevated);
+    padding: 2rem;
+    transition: background 0.3s ease;
+  }
+
+  .skill-cell:hover {
+    background: var(--bg-card);
+  }
+
+  .skill-icon {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .skill-name {
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+  }
+
+  .skill-detail {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  /* --- PROJECTS --- */
+  .projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .project-card {
+    background: var(--bg);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding: 2.5rem 2.5rem;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.35s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--accent);
+    transform: scaleY(0);
+    transition: transform 0.35s ease;
+    transform-origin: bottom;
+  }
+
+  .project-card:hover {
+    background: var(--bg-elevated);
+    padding-left: 3rem;
+  }
+
+  .project-card:hover::before {
+    transform: scaleY(1);
+  }
+
+  .project-top-row {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .project-name {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .project-tag {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    font-weight: 500;
+    padding: 0.3rem 0.75rem;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+  }
+
+  .project-desc {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    font-weight: 300;
+    max-width: 600px;
+  }
+
+  .project-arrow {
+    font-size: 1.5rem;
+    color: var(--text-dim);
+    transition: all 0.3s ease;
+  }
+
+  .project-card:hover .project-arrow {
+    color: var(--accent);
+    transform: translateX(4px);
+  }
+
+  .project-stats {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 0.75rem;
+  }
+
+  .project-stat {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .project-stat svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  /* --- EXPERIENCE --- */
+  .timeline {
+    position: relative;
+    padding-left: 2.5rem;
+    max-width: 700px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1px;
+    height: 100%;
+    background: var(--border);
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-bottom: 3.5rem;
+  }
+
+  .timeline-item:last-child { padding-bottom: 0; }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2.5rem;
+    top: 0.5rem;
+    width: 7px;
+    height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    transform: translateX(-3px);
+  }
+
+  .timeline-period {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-role {
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .timeline-company {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .timeline-desc {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* --- CONTACT --- */
+  #contact {
+    background: var(--bg-elevated);
+    border-top: 1px solid var(--border);
+    text-align: center;
+    padding: 7rem 3rem;
+  }
+
+  #contact .section-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  #contact .section-desc {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--border);
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    transition: all 0.3s;
+    border-radius: 2px;
+  }
+
+  .contact-link:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-soft);
+  }
+
+  .contact-link svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* --- FOOTER --- */
+  footer {
+    text-align: center;
+    padding: 2rem 3rem;
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    letter-spacing: 0.06em;
+    border-top: 1px solid var(--border);
+  }
+
+  /* --- ANIMATIONS --- */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* --- RESPONSIVE --- */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    .nav-links a { font-size: 0.72rem; }
+    section { padding: 4rem 1.5rem; }
+    .hero { padding: 7rem 1.5rem 3rem; }
+    .hero-meta { flex-wrap: wrap; gap: 2rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .project-card { grid-template-columns: 1fr; padding: 2rem 1.5rem; }
+    .project-card:hover { padding-left: 2rem; }
+    .project-arrow { display: none; }
+    .hero-cta { flex-direction: column; }
+    .btn { justify-content: center; }
+    #contact { padding: 4rem 1.5rem; }
+  }
+
+  @media (max-width: 480px) {
+    .nav-links { display: none; }
+    .skills-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">g<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#skills">Compétences</a></li>
+    <li><a href="#projects">Projets</a></li>
+    <li><a href="#experience">Parcours</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-label">Développeur Fullstack — Marseille</div>
+  <h1 class="hero-title">Geoffroy<br><em>crée des expériences</em><br>web & mobile</h1>
+  <p class="hero-sub">
+    Développeur WordPress & Gutenberg, créateur de plugins open-source, passionné par le développement iOS en Swift et les interfaces soignées.
+  </p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-value">12</span>
+      <span class="hero-meta-label">Repos publics</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-value">4+</span>
+      <span class="hero-meta-label">Langages</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-value">2022</span>
+      <span class="hero-meta-label">Actif depuis</span>
+    </div>
+  </div>
+  <div class="hero-cta">
+    <a href="https://github.com/geoffont" target="_blank" class="btn btn-primary">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+      Voir GitHub
+    </a>
+    <a href="#contact" class="btn btn-outline">Me contacter</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div>
+      <div class="section-label">01 — À propos</div>
+      <h2 class="section-title">Un développeur<br>polyvalent</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="about-text">
+      <p>
+        Basé à <strong>Marseille</strong>, je suis un développeur fullstack spécialisé dans l'écosystème <strong>WordPress & Gutenberg</strong> et le développement d'applications <strong>iOS en Swift</strong>.
+      </p>
+      <p>
+        Je conçois et publie des <strong>plugins open-source</strong> pour la communauté WordPress, en mettant l'accent sur la qualité du code, l'accessibilité et l'expérience utilisateur. Mon travail couvre toute la chaîne : du backend PHP au frontend React, en passant par la conteneurisation Docker.
+      </p>
+      <p>
+        Passionné par les <strong>arts martiaux</strong> et le game design, je développe également des projets personnels mêlant créativité et technique, comme un jeu de cartes sur les sports de combat du monde entier.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">02 — Compétences</div>
+  <h2 class="section-title">Technologies & outils</h2>
+  <div class="section-desc">Un éventail technique couvrant le web, le mobile et l'infrastructure.</div>
+
+  <div class="skills-grid">
+    <div class="skill-cell reveal">
+      <div class="skill-icon">⚡</div>
+      <div class="skill-name">WordPress & Gutenberg</div>
+      <div class="skill-detail">Plugins, blocs personnalisés, FSE themes, design tokens</div>
+    </div>
+    <div class="skill-cell reveal">
+      <div class="skill-icon">⚛</div>
+      <div class="skill-name">React & JavaScript</div>
+      <div class="skill-detail">Blocs Gutenberg, composants interactifs, TypeScript</div>
+    </div>
+    <div class="skill-cell reveal">
+      <div class="skill-icon">🐘</div>
+      <div class="skill-name">PHP</div>
+      <div class="skill-detail">Développement WordPress, REST API, architecture plugin</div>
+    </div>
+    <div class="skill-cell reveal">
+      <div class="skill-icon">📱</div>
+      <div class="skill-name">Swift & iOS</div>
+      <div class="skill-detail">Applications natives, SpriteKit, UIKit, SwiftUI</div>
+    </div>
+    <div class="skill-cell reveal">
+      <div class="skill-icon">🐳</div>
+      <div class="skill-name">Docker & DevOps</div>
+      <div class="skill-detail">Conteneurisation, Rancher, images ARM, CI/CD</div>
+    </div>
+    <div class="skill-cell reveal">
+      <div class="skill-icon">🎨</div>
+      <div class="skill-name">UX & Design Systems</div>
+      <div class="skill-detail">Figma, design tokens, accessibilité, prototypage</div>
+    </div>
+    <div class="skill-cell reveal">
+      <div class="skill-icon">🅰️</div>
+      <div class="skill-name">Angular & TypeScript</div>
+      <div class="skill-detail">Applications front-end, composants, services</div>
+    </div>
+    <div class="skill-cell reveal">
+      <div class="skill-icon">🔧</div>
+      <div class="skill-name">Outils & workflow</div>
+      <div class="skill-detail">Git, VS Code, Xcode, npm, Webpack</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">03 — Projets</div>
+  <h2 class="section-title">Réalisations open-source</h2>
+  <div class="section-desc">
+    Une sélection de projets publiés sur GitHub, allant des plugins WordPress aux applications web.
+  </div>
+
+  <div class="projects-list">
+
+    <a href="https://github.com/geoffont/diagnostic" target="_blank" class="project-card reveal">
+      <div>
+        <div class="project-top-row">
+          <span class="project-name">Diagnostic</span>
+          <span class="project-tag">PHP</span>
+          <span class="project-tag">WordPress</span>
         </div>
-        <div class="logo">
-          <a href="https://www.nasa.gov" target="_blank"
-            ><img src="images/NASA-Logo.png" alt="logo-nasa"></a>
+        <div class="project-desc">Plugin WordPress de diagnostic et récupération de blocs Gutenberg. Détection automatique des blocs en mode récupération, comparaison HTML et scan complet.</div>
+        <div class="project-stats">
+          <span class="project-stat">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/></svg>
+            1 star
+          </span>
         </div>
+      </div>
+      <span class="project-arrow">→</span>
+    </a>
+
+    <a href="https://github.com/geoffont/ng-pokemon-app" target="_blank" class="project-card reveal">
+      <div>
+        <div class="project-top-row">
+          <span class="project-name">Pokémon App</span>
+          <span class="project-tag">TypeScript</span>
+          <span class="project-tag">Angular</span>
+        </div>
+        <div class="project-desc">Application Angular complète dédiée à l'univers Pokémon. Interface moderne avec gestion de données et navigation dynamique.</div>
+      </div>
+      <span class="project-arrow">→</span>
+    </a>
+
+    <a href="https://github.com/geoffont/pays" target="_blank" class="project-card reveal">
+      <div>
+        <div class="project-top-row">
+          <span class="project-name">Pays</span>
+          <span class="project-tag">JavaScript</span>
+        </div>
+        <div class="project-desc">Application web interactive explorant les données géographiques des pays du monde. Interface de recherche et de visualisation.</div>
+        <div class="project-stats">
+          <span class="project-stat">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75v-.878a2.25 2.25 0 111.5 0v.878a2.25 2.25 0 01-2.25 2.25h-1.5v2.128a2.251 2.251 0 11-1.5 0V8.5h-1.5A2.25 2.25 0 013.5 6.25v-.878a2.25 2.25 0 111.5 0z"/></svg>
+            1 fork
+          </span>
+        </div>
+      </div>
+      <span class="project-arrow">→</span>
+    </a>
+
+    <a href="https://github.com/geoffont/cocktailparty" target="_blank" class="project-card reveal">
+      <div>
+        <div class="project-top-row">
+          <span class="project-name">Cocktail Party</span>
+          <span class="project-tag">JavaScript</span>
+        </div>
+        <div class="project-desc">Application web autour de l'univers des cocktails. Exploration de recettes, recherche par ingrédients et interface conviviale.</div>
+      </div>
+      <span class="project-arrow">→</span>
+    </a>
+
+    <a href="https://github.com/geoffont/clock" target="_blank" class="project-card reveal">
+      <div>
+        <div class="project-top-row">
+          <span class="project-name">Clock</span>
+          <span class="project-tag">CSS</span>
+          <span class="project-tag">JavaScript</span>
+        </div>
+        <div class="project-desc">Horloge interactive construite en CSS et JavaScript pur. Exercice de design et d'animation web.</div>
+      </div>
+      <span class="project-arrow">→</span>
+    </a>
+
+    <a href="https://github.com/geoffont/hercule-POO" target="_blank" class="project-card reveal">
+      <div>
+        <div class="project-top-row">
+          <span class="project-name">Hercule POO</span>
+          <span class="project-tag">JavaScript</span>
+        </div>
+        <div class="project-desc">Projet d'exploration de la programmation orientée objet en JavaScript. Concepts de classes, héritage et encapsulation.</div>
+      </div>
+      <span class="project-arrow">→</span>
+    </a>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">04 — Parcours</div>
+  <h2 class="section-title">Expérience professionnelle</h2>
+  <div class="section-desc">
+    Un parcours centré sur le développement web d'entreprise et la contribution open-source.
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item reveal">
+      <div class="timeline-period">2022 — Présent</div>
+      <div class="timeline-role">Développeur WordPress & Gutenberg</div>
+      <div class="timeline-company">SNCF — Marseille</div>
+      <div class="timeline-desc">
+        Développement de plugins WordPress et blocs Gutenberg en React. Création de design systems alignés sur Figma. Gestion d'environnements Docker/Rancher avec conteneurs ARM. Travail sur l'accessibilité et la tokenisation des thèmes.
       </div>
     </div>
-                                              <!--titre-->
-    <div class="titre">
-      <h1>L'espace vue du télescope spatial James Webb</h1>
-    </div>
-                                      <!--article gauche haut de page-->
-    <section id="middle">
-      <div class="article-static">
-        <h2>Déploiement du téléscope</h2>
-        <p class="scroller">
-          Le plus puissant des télescopes jamais envoyés dans l'espace a survécu
-          la partie la plus périlleuse de sa mission : son déploiement, au terme
-          de centaines d'étapes critiques. Depuis son lancement le jour de Noël,
-          le télescope à dix milliards de dollars a déplié, déroulé et basculé
-          ses différents membres dans leur configuration finale, une
-          transformation délicate effectuée en filant à toute vitesse vers un
-          point dans l'espace situé à plusieurs millions de kilomètres.
-        </p>
-        <img
-          src="images/Webb-Space-Telescope-Secondary-Mirror-Deployment-2-22_thumb.gif"
-          alt="image du telescope en gif"
-          class="telescope">
-      </div>
-                                              <!--carousel-->
-      <div class="slider">
-        <img
-          src="images/nebuleuse_de_la_carene.jpg"
-          alt="photo de la nébuleuse de la carenne"
-          class="img__slider active">
-        <img src="images/galaxie-M74.jpg" alt="img2" class="img__slider">
-        <img
-          src="images/nebuleuse_de_la_tarentule.jpg"
-          alt="photo de la nébuleuse de la tarentule"
-          class="img__slider">
-        <img
-          src="images/118428.jpg"
-          alt="image d'artiste du telescope"
-          class="img__slider">
-        <img
-          src="images/l-amas-globulaire-m92.jpg"
-          alt="photo de l'amas globulaire m92"
-          class="img__slider">
-        <img
-          src="images/univers-cliche-telescope-james-w.jpg"
-          alt="cliché de l'univers"
-          class="img__slider">
-        <div class="suivant">
-          <i class="fas fa-angle-right"></i>
-        </div>
-        <div class="precedent">
-          <i class="fas fa-angle-left"></i>
-        </div>
-      </div>
-                                        <!--article droit haut de page-->
-      <div class="article-static">
-        <h2>Article sur le telescope</h2>
-        <p class="scroller">
-          James-Webb est un télescope spatial servant d'observatoire
-          fonctionnant principalement dans l'infrarouge, développé par la NASA
-          avec la participation de l'Agence spatiale européenne (ESA) et de
-          l'Agence spatiale canadienne (ASC). Le JWST est conçu pour poursuivre
-          les travaux du télescope spatial Hubble, en effectuant toutefois ses
-          observations dans des longueurs d'onde plus longues. Son lancement a
-          lieu le 25 décembre 2021 et la première image de qualité scientifique
-          produite par le télescope est publiée en juillet 2022.
-        </p>
-        <img
-          src="images/James-Webb-Télescope.jpg"
-          alt="photo du telescope webb"
-          class="telescope">
-      </div>
-    </section>
-                                                  <!--galerie A-->
-    <section id="galerie">
-      <div class="gal-a">
-        <div class="orion">
-          <h2>La ceinture d'orion</h2>
-          <img
-            src="images/ceinture-d'orion.jpg"
-            alt="photo de la ceinture d'orion">
-          <p>
-            La ceinture ou baudrier d'Orion est l'un des astérismes les plus
-            connus, faisant partie de la constellation d'Orion. Composé des
-            trois supergéantes bleues Alnitak, Alnilam et Mintaka, très
-            brillantes et presque parfaitement alignées, l'astérisme, facilement
-            reconnaissable à l'œil nu, est un point de repère du ciel nocturne
-            et fait l'objet de maintes références mythologiques et religieuses.
-          </p>
-        </div>
-        <div class="chariot">
-          <h2>La galaxie de la roue de chariot</h2>
-          <img
-            src="images/galaxie-de-la-roue-du-chariot.jpg"
-            alt="photo de la galaxie de la roue du chariot">
-          <p>
-            La galaxie de la Roue de chariot est une galaxie lenticulaire à
-            anneau située dans la constellation du Sculpteur. Sa vitesse par
-            rapport au fond diffus cosmologique est de 8 790 ± 18 km/s, ce qui
-            correspond à une distance de Hubble de 129,6 ± 9,1 Mpc (∼423
-            millions d'a.l.). Cette galaxie à un diamètre d'environ 188 000
-            années-lumière, légèrement plus grande que la Voie lactée. Elle
-            possède une masse d'environ 2,9 à 4,8 milliards de masses solaires
-            et une vitesse de rotation d'environ 217 km/s.
-          </p>
-        </div>
-      </div>
-                                                 <!--galerie B-->
-      <div class="gal-b">
-        <div class="galm74">
-          <h2>La galaxie fantome</h2>
-          <img src="images/galaxie-M74.jpg" alt="photo de la galaxie m74">
-          <p>
-            M74 (ou galaxie du Fantôme) est une galaxie spirale de grand style.
-            située dans la constellation des Poissons. Sa vitesse par rapport au
-            fond diffus cosmologique est de 359 ± 21 km/s, ce qui correspond à
-            une distance de Hubble de 5,29 ± 0,48 Mpc (∼17,3 millions d'a.l.).
-            M74 a été découvert par l'astronome français Pierre Méchain en 1780,
-            puis observée par Charles Messier qui l'intégra dans son catalogue
-            quelques semaines plus tard.
-          </p>
-        </div>
-      </div>
-                                                  <!--galerie C-->
-      <div class="gal-c">
-        <div class="austral">
-          <h2>La Nébuleuse planétaire de l’Anneau austral</h2>
-          <img
-            src="images/hero-image.webp"
-            alt="photo de la nébuleuse planétaire ngc 3132">
-          <p>
-            NGC 3132 (Caldwell 74) est une nébuleuse planétaire située dans la
-            constellation des Voiles à environ 2000 années-lumière du système
-            solaire. Surnommée nébuleuse aux huit éclats (par erreur de
-            traduction de l'anglais « Eight-Burst », signifiant « explosion en
-            huit »), ou nébuleuse de l’anneau austral, elle a été découverte par
-            l'astronome britannique John Herschel en 1835. Son diamètre est
-            d'environ de 0,93 année-lumière, ce qui représente près de 1500 fois
-            la distance du Soleil à Pluton.
-          </p>
-        </div>
-        <div class="jup">
-          <h2>La planete jupiter</h2>
-          <img src="images/jupiter.png" alt="photo de la planète jupiter">
-          <p>
-            Jupiter est la cinquième planète du Système solaire par ordre
-            d'éloignement au Soleil, et la plus grande par la taille et la masse
-            devant Saturne, qui est comme elle une planète géante gazeuse. Elle
-            est même plus volumineuse que toutes les autres planètes réunies
-            avec son rayon moyen de 69 911 km, qui vaut environ onze fois celui
-            de la Terre, et sa masse de 1,898 2 × 1027 kg, qui est 318 fois plus
-            grande. Orbitant en moyenne à environ 779 millions de kilomètres du
-            Soleil, sa période de révolution vaut un peu moins de 12 ans.
-          </p>
-        </div>
-      </div>
-                                                   <!--galerie F-->
-      <div class="gal-f">
-        <div class="tarentule">
-          <h2>La nébuleuse de la tarentule</h2>
-          <img
-            src="images/nebuleuse_de_la_tarentule.jpg"
-            alt="photo de la nebuleuse de la tarentule">
-          <p>
-            La nébuleuse de la Tarentule (également connue sous le nom de 30
-            Doradus, ou NGC 2070 ou Caldwell 103) est une région HII dans le
-            Grand Nuage de Magellan. Initialement, on pensait qu'il s'agissait
-            d'une étoile (d'où la dénomination désuète de 30 Doradus dans la
-            classification de Flamsteed), mais en 1751 Nicolas-Louis de Lacaille
-            a pu identifier sa nature nébuleuse. Elle se situe à 160 000
-            années-lumière de la Terre. Le taux de naissance d'étoiles y est
-            plus élevé qu'en n'importe quelle région de notre Galaxie, ce qui a
-            été à nouveau confirmé en 2022. La nébuleuse de la Tarentule est la
-            plus grosse nébuleuse connue à ce jour.
-          </p>
-        </div>
-      </div>
-                                                  <!--galerie D-->
-      <div class="gal-d">
-        <div class="globule">
-          <h2>L'amas globulaire M92</h2>
-          <img
-            src="images/l-amas-globulaire-m92.jpg"
-            alt="photo de l'amas globulaire m92">
-          <p>
-            M92 (NGC 6341) est un amas globulaire situé dans la constellation
-            d'Hercule à environ 25 775 a.l. (8,3 kpc) du Soleil et à 31 310 a.l.
-            (9,6 kpc) du centre de la Voie lactée. Il a été découvert par
-            l'astronome allemand Johann Elert Bode en 1784. Charles Messier le
-            découvrit indépendamment et l'inscrit à son catalogue le 18 mars
-            1781. L'astronome français Jérôme Lalande a aussi enregistré cet
-            amas le 25 mai 1795. William Herschel a été le premier à résoudre
-            M92 en étoiles en 1783.
-          </p>
-        </div>
-        <div class="quinte">
-          <h2>Le quintette de stephan</h2>
-          <img
-            src="images/la-quintette-de-stephan.jpg"
-            alt="photo du quintette de stephan">
-          <p>
-            Le Quintette de Stephan est un groupement visuel de galaxies situé
-            dans la constellation de Pégase, et observé pour la première fois
-            par l'astronome français Édouard Stephan en 1878. Stephan le
-            catalogue en tant qu'agrégat de nébuleuses, personne n'imaginant à
-            l'époque qu'il s'agit de galaxies constituées de milliards d'étoiles
-            et situées en dehors de la Voie lactée.
-          </p>
-        </div>
-      </div>
-                                          <!--galerie E-->
-      <div class="gal-e">
-        <div class="carene">
-          <h2>La nebuleuse de la Carène</h2>
-          <img
-            src="images/nebuleuse_de_la_carene.jpg"
-            alt="photo de la nebuleuse de la carene">
-          <p>
-            La nébuleuse de la Carène (ou Grande nébuleuse de la Carène, NGC
-            3372) est une nébuleuse en émission et une nébuleuse par réflexion
-            située dans la constellation de la Carène. Elle a été découverte par
-            l'astronome français Nicolas-Louis de Lacaille en 1752 depuis le cap
-            de Bonne-Espérance en Afrique du Sud.
-          </p>
-        </div>
-      </div>
-    </section>
-                                           <!--formulaire-->
-    <div id="formulaire">
-      <form>
-        <input name="name" type="text" value="Votre nom" class="inpuText">
-        
-
-        <textarea cols="30" rows="2" class="aeraText">
-Tapez votre texte ici....</textarea
-        >
-
-        <button type="submit" value="Submit" class="formButton" onclick="openPopup()">Envoyer</button>
-        <div class="popup">
-          <h3>Merci</h3>
-          <p class="inputSubmit"></p>
-          <p>voici une surprise</p>
-          <button type="button" onclick="closePopup()">OK</button>
-        </div>
-      </form>
-    </div>
-    
-
-
-
-                                          <!--système solaire-->
-    <div id="script_solaire">
-      <div id="systeme_solaire">
-        <!--SOLEIL-->
-        <div id="info_soleil" class="titre_info">Soleil</div>
-        <div id="cadre_soleil"></div>
-        <!--mercure-->
-        <div id="info_mercure" class="titre_info">Mercure</div>
-        <div id="cadre_mercure"></div>
-        <!--venus-->
-        <div id="info_venus" class="titre_info">Venus</div>
-        <div id="cadre_venus"></div>
-        <!--terre-->
-        <div id="info_terre" class="titre_info">Terre</div>
-        <div id="cadre_terre"></div>
-        <!--Lune-->
-        <div id="info_lune" class="titre_info">Lune</div>
-        <div id="cadre_lune"></div>
-        <!--mars-->
-        <div id="info_mars" class="titre_info">Mars</div>
-        <div id="cadre_mars"></div>
-        <!--ceinture d'asteroides-->
-        <div id="info_ceinture_asteroides" class="titre_info">
-          Ceinture d'asteroides
-        </div>
-        <div id="cadre_ceinture_asteroides"></div>
-        <!--jupiter-->
-        <div id="info_jupiter" class="titre_info">Jupiter</div>
-        <div id="cadre_jupiter"></div>
-        <!--saturne-->
-        <div id="info_saturne" class="titre_info">Saturne</div>
-        <div id="cadre_saturne"></div>
-        <!--uranus-->
-        <div id="info_uranus" class="titre_info">Uranus</div>
-        <div id="cadre_uranus"></div>
-        <!--neptune-->
-        <div id="info_neptune" class="titre_info">Neptune</div>
-        <div id="cadre_neptune"></div>
-        <!--postion des astres-->
-        <div id="soleil"></div>
-        <div id="mercure" class="orbite">
-          <div id="planete_mercure"></div>
-        </div>
-        <div id="venus" class="orbite">
-          <div id="planete_venus"></div>
-        </div>
-        <div id="terre" class="orbite">
-          <div id="planete_terre">
-            <div id="lune" class="orbite">
-              <div id="astre_lune"></div>
-            </div>
-          </div>
-        </div>
-        <div id="mars" class="orbite">
-          <div id="planete_mars"></div>
-        </div>
-        <div id="ceinture_asteroides"></div>
-        <div id="ceinture_asteroides1"></div>
-        <div id="jupiter" class="orbite">
-          <div id="planete_jupiter"></div>
-        </div>
-        <div id="saturne" class="orbite">
-          <div id="planete_saturne">
-            <div id="anneau_saturne"></div>
-          </div>
-        </div>
-        <div id="uranus" class="orbite">
-          <div id="planete_uranus">
-            <div id="anneau_uranus"></div>
-          </div>
-        </div>
-        <div id="neptune" class="orbite">
-          <div id="planete_neptune"></div>
-        </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-period">En parallèle</div>
+      <div class="timeline-role">Développeur iOS indépendant</div>
+      <div class="timeline-company">Projets personnels</div>
+      <div class="timeline-desc">
+        Conception d'applications iOS en Swift, dont un jeu de cartes sur les arts martiaux du monde utilisant SpriteKit. Exploration du game design et des interfaces mobiles natives.
       </div>
     </div>
-                                                <!--footer-->
-    <div id="bas">
-      <div class="footer">
-        <div class="liens">
-          <a href="https://fr-fr.facebook.com/NASAWebb/" target="_blank"
-            ><img
-              src="images/facebook-logo.png"
-              alt="logo-facebook"
-              class="logoFacebook"></a>
-          <a
-            href="https://twitter.com/NASAWebb?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"
-            target="_blank"
-            ><img src="images/twitter-logo.png" alt="logo-twitter"></a>
-          <a href="https://www.instagram.com/nasawebb/" target="_blank"
-            ><img
-              src="images/instagram-logo.png"
-              alt="logo-instagram"
-              class="logoInsta"></a>
-          <a
-            href="https://fr.wikipedia.org/wiki/James-Webb_(t%C3%A9lescope_spatial)"
-            target="_blank"
-            ><img src="images/Wikipedia-logo.png" alt="logo-wikipedia"></a>
-        </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-period">Continu</div>
+      <div class="timeline-role">Contributeur open-source</div>
+      <div class="timeline-company">GitHub — geoffont</div>
+      <div class="timeline-desc">
+        Publication et maintenance de plugins WordPress open-source. Partage de connaissances et outils pour la communauté de développeurs.
       </div>
-      <p>Create by Geoffroy FONTAINE / 2022</p>
     </div>
-    <script src="script.js"></script>
-  </body>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">05 — Contact</div>
+  <h2 class="section-title">Travaillons<br>ensemble</h2>
+  <p class="section-desc">
+    Disponible pour des collaborations, des missions freelance ou simplement échanger sur un projet.
+  </p>
+  <div class="contact-links">
+    <a href="https://github.com/geoffont" target="_blank" class="contact-link">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+      GitHub
+    </a>
+    <a href="https://geoffont.github.io" target="_blank" class="contact-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+      Site web
+    </a>
+    <a href="mailto:contact@geoffroy.dev" class="contact-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4l-10 8L2 4"/></svg>
+      Email
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  © 2025 Geoffroy — Conçu avec soin à Marseille
+</footer>
+
+<script>
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Smooth nav background
+  let lastScroll = 0;
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    const scrollY = window.scrollY;
+    if (scrollY > 80) {
+      nav.style.borderBottomColor = 'rgba(42, 42, 50, 0.7)';
+    } else {
+      nav.style.borderBottomColor = 'rgba(42, 42, 50, 0.4)';
+    }
+    lastScroll = scrollY;
+  });
+</script>
+
+</body>
 </html>
